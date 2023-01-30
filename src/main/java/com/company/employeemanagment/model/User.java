@@ -52,4 +52,12 @@ public class User {
     public void persist() {
         setCreatedDate(new Date());
     }
+
+    private Boolean accountNonExpired;
+
+    private Boolean accountNonLocked;
+
+    private Boolean credentialsNonExpired;
+
+    private Boolean enabled;
 }

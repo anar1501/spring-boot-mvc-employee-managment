@@ -3,14 +3,13 @@ package com.company.employeemanagment.controller;
 
 import com.company.employeemanagment.enums.UserStatusEnum;
 import com.company.employeemanagment.model.User;
-import com.company.employeemanagment.model.UserStatus;
 import com.company.employeemanagment.repository.UserRepository;
 import com.company.employeemanagment.repository.UserStatusRepository;
 import com.company.employeemanagment.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.dom4j.rule.Mode;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
 import java.util.Date;
 import java.util.Objects;
 
@@ -31,6 +29,7 @@ public class AuthenticationController {
     final UserService userService;
     final UserRepository userRepository;
     final UserStatusRepository userStatusRepository;
+    final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/homepage")
     String home() {
@@ -43,7 +42,7 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/register")
-    String registerUser(@Valid User user, RedirectAttributes redirectAttributes) {
+    String registerUser(User user, RedirectAttributes redirectAttributes) {
         User userByEmail = userService.findUserByEmail(user.getEmail());
         if (userByEmail != null) {
             redirectAttributes.addFlashAttribute("errore", "There is already a email registered with the email provided");
@@ -110,20 +109,23 @@ public class AuthenticationController {
         if (Objects.isNull(userByEmail)) {
             model.addAttribute("error", "Email is incorrect!");
             modelAndView.setViewName("loginpage");
+            model.addAttribute("user",null);
         } else {
-            if (!user.getPassword().equals(userByEmail.getPassword())) {
+            boolean matches = passwordEncoder.matches(user.getPassword(), userByEmail.getPassword());
+            if (!matches) {
                 model.addAttribute("error", "Password is incorrect!");
                 modelAndView.setViewName("loginpage");
+                model.addAttribute("user",null);
             } else if (!userByEmail.getStatus().getStatusId().equals(UserStatusEnum.CONFIRMED.getStatusId())) {
                 model.addAttribute("infoex", "Your account is not confirmed!");
                 modelAndView.setViewName("errorinfopage");
+                model.addAttribute("user",null);
             } else {
-                modelAndView.addObject("user", user);
+                model.addAttribute("user", userByEmail);
                 modelAndView.setViewName("homepage");
             }
         }
         return modelAndView;
     }
-
 
 }

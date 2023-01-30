@@ -14,6 +14,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.company.employeemanagment.enums.RoleEnums.ROLE_USER;
@@ -33,6 +34,8 @@ public class UserServiceImpl implements UserService {
     String messageSubject;
     @Value("${my.message.body}")
     String messageBody;
+    final PasswordEncoder passwordEncoder;
+
     @Override
     public User save(User user) {
         user.setExpiredDate(ApplicationUtils.prepareRegistrationExpirationDate());
@@ -41,6 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(role);
         UserStatus userStatus = userStatusRepository.findUserStatusByStatusId(UNCONFIRMED.getStatusId());
         user.setStatus(userStatus);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         messageUtils.sendAsync(savedUser.getEmail(),messageSubject,messageBody+"http://localhost:8080/register-confirm?code="+ savedUser.getActivationCode());
         return savedUser;
