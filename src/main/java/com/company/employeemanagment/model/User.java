@@ -22,6 +22,7 @@ public class User {
     private String password;
     private String repeatPassword;
     private String activationCode;
+    private String passwordActivationCode;
     private Date expiredDate;
     @Column(length = 6)
     private String sixDigitCode;

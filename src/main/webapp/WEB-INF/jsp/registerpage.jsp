@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
-<link rel="stylesheet" type="text/css" href="qeydiyyat/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="qeydiyyat/fontawesome-all.min.css">
-<link rel="stylesheet" type="text/css" href="qeydiyyat/iofrm-style.css">
-<link rel="stylesheet" type="text/css" href="qeydiyyat/iofrm-theme17.css">
+<link rel="stylesheet" type="text/css" href="css/q1.min.css">
+<link rel="stylesheet" type="text/css" href="css/q4.css">
+<link rel="stylesheet" type="text/css" href="css/q3.css">
+<link rel="stylesheet" type="text/css" href="css/q2.css">
 
 
 <div class="form-body without-side">
@@ -28,8 +28,8 @@
                 <div class="form-items">
                     <h3>Register new account</h3>
                     <form action="register" method="post">
-                        <input class="form-control" type="text" name="firstName" placeholder="Name" required>
-                        <input class="form-control" type="text" name="lastName" placeholder="Surname" required>
+                        <input class="form-control" type="text" name="name" placeholder="Name" required>
+                        <input class="form-control" type="text" name="surname" placeholder="Surname" required>
                         <c:out value="${errore}"></c:out>
                         <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
                         <c:out value="${errorp}"></c:out>
@@ -54,8 +54,8 @@
         </div>
     </div>
 </div>
-<script src="jslogin/jquery.min.js"></script>
-<script src="jslogin/popper.min.js"></script>
-<script src="jslogin/bootstrap.min.js"></script>
-<script src="jslogin/main.js"></script>
+<script src="js/loginjs3.min.js"></script>
+<script src="js/loginjs5.min.js"></script>
+<script src="js/loginjs1.min.js"></script>
+<script src="js/loginjs4.js"></script>
 <jsp:include page="footer.jsp"></jsp:include>

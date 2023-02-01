@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="vendornavbar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assetsnavbar/css/fontawesome.css">
-    <link rel="stylesheet" href="assetsnavbar/css/templatemo-grad-school.css">
-    <link rel="stylesheet" href="assetsnavbar/css/owl.css">
-    <link rel="stylesheet" href="assetsnavbar/css/lightbox.css">
+    <link rel="stylesheet" href="css/header6.css">
+    <link rel="stylesheet" href="css/header2.css">
+    <link rel="stylesheet" href="css/header5.css">
+    <link rel="stylesheet" href="css/header4.css">
+    <link rel="stylesheet" href="css/header3.css">
 </head>
 <body>
 <header class="main-header clearfix" role="header">
@@ -35,7 +35,7 @@
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
-<%--            <jsp:useBean id="user" scope="request" class="com.company.employeemanagment.model.User"/>--%>
+<%--            <jsp:useBean id="user" type=""  class="com.company.entity.User"/>--%>
             <c:if test="${user ne null and user.role.name ne null and user.role.name eq 'ADMIN'}">
                 <li class="${selected_admin}"><a href="${admin_url}">Admin Panel</a></li>
             </c:if>
@@ -53,7 +53,7 @@
                 <li class="${selected_register}"><a href="/register">Register</a></li>
             </c:if>
             <c:if test="${user ne null}">
-                <li><a href="/employee/private/logout" class="external">Logout</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/logout" class="external">Logout</a></li>
             </c:if>
         </ul>
     </nav>

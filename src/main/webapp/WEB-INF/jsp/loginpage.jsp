@@ -1,10 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"></jsp:include>
-
-<link rel="stylesheet" type="text/css" href="giris/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="giris/fontawesome-all.min.css">
-<link rel="stylesheet" type="text/css" href="giris/iofrm-style.css">
-<link rel="stylesheet" type="text/css" href="giris/iofrm-theme17.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
+<link rel="stylesheet" type="text/css" href="css/iofrm-theme17.css">
 
 <div class="form-body without-side">
     <div class="website-logo">
@@ -17,7 +16,7 @@
         <div class="img-holder">
             <div class="bg"></div>
             <div class="info-holder">
-                <img src="imageslogin/graphic3.svg" alt="">
+                <img src="images/loginimage3.svg" alt="">
             </div>
         </div>
         <div class="form-holder">
@@ -34,7 +33,7 @@
                         </c:if>
                         <input class="form-control" type="password" name="password" placeholder="Password" required>
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ibtn">Login</button> <a href="forget-password">Forget password?</a>
+                            <button id="submit" type="submit" class="ibtn">Login</button> <a href="/forget-password">Forget password?</a>
                         </div>
                     </form>
                     <div class="other-links">
@@ -49,9 +48,8 @@
         </div>
     </div>
 </div>
-<script src="jslogin/jquery.min.js"></script>
-<script src="jslogin/popper.min.js"></script>
-<script src="jslogin/bootstrap.min.js"></script>
-<script src="jslogin/main.js"></script>
-
-<jsp:include page="footer.jsp" ></jsp:include>
+<script src="js/loginjs3.min.js"></script>
+<script src="js/loginjs5.min.js"></script>
+<script src="js/jslogin/loginjs1.min.js"></script>
+<script src="js/loginjs4.js"></script>
+<jsp:include page="footer.jsp"></jsp:include>

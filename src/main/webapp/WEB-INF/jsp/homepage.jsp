@@ -1,5 +1,13 @@
 <jsp:include page="header.jsp"></jsp:include>
 
-<link rel="stylesheet" href="esassehife/esassehife.css">
+<style>
+    body {
+        background: url("images/homepagephoto.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
 
-<jsp:include page="footer.jsp" ></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
