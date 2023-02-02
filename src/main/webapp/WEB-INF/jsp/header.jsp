@@ -40,9 +40,9 @@
                 <li class="${selected_admin}"><a href="${admin_url}">Admin Panel</a></li>
             </c:if>
             <li class="${selected_home}"><a href="${home_url}">Home</a></li>
-            <li class="${selected_employeelist}"><a href="${employeelist_url}">Employee List</a>
+            <li class="${selected_employeelist}"><a href="/employee-list">Employee List</a>
                 <ul class="sub-menu">
-                    <li class="${selected_insert}"><a href="${insert_url}">Insert Employee</a></li>
+                    <li class="${selected_insert}"><a href="/insert">Insert Employee</a></li>
                     <li class="${selected_edit}"><a href="${edit_url}">Edit Employee</a></li>
                     <li class="${selected_delete}"><a href="${delete_url}">Delete Employee</a></li>
                     <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>

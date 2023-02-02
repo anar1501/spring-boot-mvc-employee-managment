@@ -21,6 +21,9 @@ public class Employee implements Serializable {
     private String surname;
     private int age;
     private BigDecimal salary;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private UserStatus userStatus;
 
     @Column(name = "CREATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)

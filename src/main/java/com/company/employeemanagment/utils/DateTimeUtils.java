@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-public class ApplicationUtils implements Serializable {
+public class DateTimeUtils implements Serializable {
 
     //registration confirm linki ucun expiration time hazirlayir
     public static Date prepareRegistrationExpirationDate() {
