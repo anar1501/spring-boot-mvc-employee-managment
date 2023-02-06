@@ -43,8 +43,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/employee-list").permitAll()
                 .antMatchers("/insert").permitAll()
                 .antMatchers("/employee-save").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
+                .antMatchers("/edit-employee-page").permitAll()
+                .antMatchers("/edit-employee").permitAll()
+                .antMatchers("/edit-employee-save").permitAll()
+                .antMatchers("/delete-employee-page").permitAll()
+                .antMatchers("/delete-employee").permitAll()
+                .antMatchers("/delete-employee-save").permitAll()
+                .antMatchers("/resend").permitAll()
+                .and().csrf().disable().formLogin()
                 .loginPage("/login").loginProcessingUrl("/homepage")
                 .usernameParameter("email")
                 .passwordParameter("password")
@@ -74,8 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

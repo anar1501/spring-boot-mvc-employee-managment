@@ -2,7 +2,7 @@
 
 <style>
     body {
-        background: url("images/homepagephoto.jpg");
+        background: url("${pageContext.servletContext.contextPath}/images/homepagephoto.jpg");
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;

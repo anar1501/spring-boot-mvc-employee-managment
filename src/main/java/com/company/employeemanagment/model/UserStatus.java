@@ -19,8 +19,6 @@ public class UserStatus implements Serializable {
     private String name;
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-//    @OneToMany(mappedBy = "status")
-//    @Cascade({org.hibernate.annotations.CascadeType.ALL})
     @OneToMany(cascade = CascadeType.ALL, mappedBy="status", orphanRemoval = true)
     private Set<User> users;
 }

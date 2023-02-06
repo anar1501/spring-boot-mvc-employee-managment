@@ -5,13 +5,13 @@
 
     <div class="navbar">
         <div >
-            <a href="Home"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="/homepage"><i class="fa fa-fw fa-home"></i> Home</a>
             <a href="Search"><i class="fa fa-fw fa-search"></i> Search</a> 
-            <a href="Contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+            <a href="Contact"><i class="fa fa-fw fa-envelope"></i>Contact</a>
         </div>
         <div>
-            <a href="Register"><i class="fa fa-fw fa-user"></i>Register</a>
-            <a href="Login"><i class="fa fa-fw fa-user"></i>Login</a>
+            <a href="/register"><i class="fa fa-fw fa-user"></i>Register</a>
+            <a href="/login"><i class="fa fa-fw fa-user"></i>Login</a>
         </div>
     </div>
 

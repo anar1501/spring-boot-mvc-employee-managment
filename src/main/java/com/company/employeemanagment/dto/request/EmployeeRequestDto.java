@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeRequestDto {
+    Long id;
     String firstName;
     String lastName;
     int age;

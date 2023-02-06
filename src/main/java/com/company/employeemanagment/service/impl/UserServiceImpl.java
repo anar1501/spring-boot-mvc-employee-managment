@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
         user.setStatus(userStatus);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
-        messageUtils.sendAsync(savedUser.getEmail(),messageSubject,messageBody+"http://localhost:8080/register-confirm?code="+ savedUser.getActivationCode());
+        messageUtils.sendAsync(savedUser.getEmail(), messageSubject, messageBody + "http://localhost:8080/register-confirm?code=" + savedUser.getActivationCode());
         return savedUser;
     }
 
@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
                 model.addAttribute("user", null);
             } else {
                 model.addAttribute("user", userByEmail);
-                modelAndView.setViewName("homepage");
+                modelAndView.setViewName("redirect:/homepage");
             }
         }
         return modelAndView;
@@ -202,6 +202,15 @@ public class UserServiceImpl implements UserService {
             model.addAttribute("infos", "Password successfully changed!");
             modelAndView.setViewName("successinfopage");
         }
+        return modelAndView;
+    }
+
+    @Override
+    public ModelAndView resendEmail(Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        this.save(userRepository.findById(id).get());
+        modelAndView.addObject("infos", "Activation code was again successfully sent! Please check your email!");
+        modelAndView.setViewName("successinfopage");
         return modelAndView;
     }
 

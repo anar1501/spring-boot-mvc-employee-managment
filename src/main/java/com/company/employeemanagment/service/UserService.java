@@ -22,4 +22,6 @@ public interface UserService {
     ModelAndView validateForgetPasswordActivationCodeAndPrepareNewPassword(String code, Model model);
 
     ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model);
+
+    ModelAndView resendEmail(Long id);
 }

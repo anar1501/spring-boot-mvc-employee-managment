@@ -28,8 +28,8 @@
                 <div class="form-items">
                     <h3>Register new account</h3>
                     <form action="register" method="post">
-                        <input class="form-control" type="text" name="name" placeholder="Name" required>
-                        <input class="form-control" type="text" name="surname" placeholder="Surname" required>
+                        <input class="form-control" type="text" name="firstName" placeholder="Name" required>
+                        <input class="form-control" type="text" name="lastName" placeholder="Surname" required>
                         <c:out value="${errore}"></c:out>
                         <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
                         <c:out value="${errorp}"></c:out>

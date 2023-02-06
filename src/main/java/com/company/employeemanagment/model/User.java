@@ -48,17 +48,10 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_status_id",referencedColumnName = "id")
     private UserStatus status=new UserStatus();
+    private Boolean enabled;
 
     @PrePersist
     public void persist() {
         setCreatedDate(new Date());
     }
-
-    private Boolean accountNonExpired;
-
-    private Boolean accountNonLocked;
-
-    private Boolean credentialsNonExpired;
-
-    private Boolean enabled;
 }

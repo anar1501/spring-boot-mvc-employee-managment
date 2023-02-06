@@ -22,64 +22,69 @@ public class AuthenticationController {
     final UserService userService;
 
     @GetMapping(value = "/homepage")
-    String home() {
+    public String home() {
         return "homepage";
     }
 
     @GetMapping(value = "/register")
-    String registerPage() {
+    public String registerPage() {
         return "registerpage";
     }
 
     @PostMapping(value = "/register")
-    String registerUser(User user, RedirectAttributes redirectAttributes) {
+    public String registerUser(User user, RedirectAttributes redirectAttributes) {
         return userService.registerUser(user, redirectAttributes);
     }
 
     @GetMapping(value = "/register-confirm")
-    String registerConfirm(@RequestParam(value = "code") String code, RedirectAttributes redirectAttributes) {
-      return userService.registerConfirm(code,redirectAttributes);
+    public String registerConfirm(@RequestParam(value = "code") String code, RedirectAttributes redirectAttributes) {
+        return userService.registerConfirm(code, redirectAttributes);
     }
 
     @GetMapping(value = "/error-info")
-    String errorPage() {
+    public String errorPage() {
         return "errorinfopage";
     }
 
 
     @GetMapping(value = "/successful")
-    String successPage() {
+    public String successPage() {
         return "successinfopage";
     }
 
     @GetMapping(value = "/login")
-    String loginPage() {
+    public String loginPage() {
         return "loginpage";
     }
 
     @PostMapping(value = "/login")
-    ModelAndView loginUser(User user, Model model) {
-      return userService.loginUser(user,model);
+    public ModelAndView loginUser(User user, Model model) {
+        return userService.loginUser(user, model);
     }
 
     @GetMapping(value = "/forget-password")
-    String forgetPasswordPage() {
+    public String forgetPasswordPage() {
         return "forgetpasswordpage";
     }
 
     @PostMapping(value = "/forget-password")
-    ModelAndView sendForgetPasswordActivationCodeToEmail(String email, Model model) {
-       return userService.sendForgetPasswordActivationCodeToEmail(email,model);
+    public ModelAndView sendForgetPasswordActivationCodeToEmail(String email, Model model) {
+        return userService.sendForgetPasswordActivationCodeToEmail(email, model);
     }
 
     @GetMapping(value = "/forget-password-confirm")
-    ModelAndView validateForgetPasswordActivationCodeAndPrepareNewPassword(@RequestParam(value = "code") String code, Model model) {
-      return userService.validateForgetPasswordActivationCodeAndPrepareNewPassword(code,model);
+    public ModelAndView validateForgetPasswordActivationCodeAndPrepareNewPassword(@RequestParam(value = "code") String code, Model model) {
+        return userService.validateForgetPasswordActivationCodeAndPrepareNewPassword(code, model);
     }
 
     @PostMapping(value = "/save-new-password")
-    ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model) {
-       return userService.saveNewUserPasswordThatForgotten(requestDto,model);
+    public ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model) {
+        return userService.saveNewUserPasswordThatForgotten(requestDto, model);
+    }
+
+    @GetMapping(value = "/resend")
+    public ModelAndView resendEmail(@RequestParam(value = "id") Long id) {
+        return userService.resendEmail(id);
     }
 
 }
