@@ -6,7 +6,7 @@ spring:
             format_sql: true
             ddl-auto: update
     datasource:
-        url: jdbc:mysql://localhost:3306/elvin_emp_managment?autoReconnect=true&useSSL=false
+        url: jdbc:mysql://localhost:3306/your_schema_name?autoReconnect=true&useSSL=false
         username: root
         password: root
         driverClassName: com.mysql.cj.jdbc.Driver
