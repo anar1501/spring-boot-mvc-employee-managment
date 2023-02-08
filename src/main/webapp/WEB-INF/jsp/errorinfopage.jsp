@@ -17,15 +17,15 @@
         <c:choose>
             <c:when test="${infoex eq 'Confirmation code is expired!'}">
                 <h2 style="color: red">${infoex}</h2>
-                <a href="/resend" class="btn btn-primary mt-4">Resend Email</a>
+                <a href="${infos}" class="btn btn-primary mt-4">Resend Email</a>
             </c:when>
             <c:when test="${infoex eq 'Your account is not confirmed!'}">
                 <h2 style="color: red">${infoex}</h2>
-                <a href="/resend" class="btn btn-primary mt-4">Resend Email</a>
+                <a href="${infos}" class="btn btn-primary mt-4">Resend Email</a>
             </c:when>
             <c:when test="${infoex eq 'Forget Password Confirmation code is expired!'}">
                 <h2 style="color: red">${infoex}</h2>
-                <a href="/resend" class="btn btn-primary mt-4">Resend Email</a>
+                <a href="${infos}" class="btn btn-primary mt-4">Resend Email</a>
             </c:when>
             <c:otherwise>
                 <h2 style="color: red">${infoe}</h2>

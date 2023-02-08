@@ -16,7 +16,7 @@
             <img src="images/successinfophoto.svg" alt="Email sent icon">
             <h2 style="color:green">${infos}</h2>
             <div class="mt-5">
-                <a href="/home" class="btn btn-blue me-4">Homepage</a>
+                <a href="/homepage" class="btn btn-blue me-4">Homepage</a>
                 <a href="#" class="btn btn-blue">Visit the Blog</a>
             </div>
         </div>

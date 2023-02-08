@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface EmployeeService {
     ModelAndView employeeListPage();
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DIRECTOR')")
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DIRECTOR')")
     String insertedEmployee(EmployeeRequestDto requestDto);
     ModelAndView editEmployeeListPage();
     ModelAndView editEmployeePage(Long id);

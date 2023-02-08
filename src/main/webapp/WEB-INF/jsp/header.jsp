@@ -36,7 +36,7 @@
     <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
             <c:if test="${user ne null and user.role.name ne null and user.role.name eq 'ROLE_ADMIN'}">
-                <li class="${selected_admin}"><a href="${admin_url}">Admin Panel</a></li>
+                <li class="${selected_admin}"><a href="/admin-panel">Admin Panel</a></li>
             </c:if>
             <li class="${selected_home}"><a href="/homepage">Home</a></li>
             <li class="${selected_employeelist}"><a href="/employee-list">Employee List</a>

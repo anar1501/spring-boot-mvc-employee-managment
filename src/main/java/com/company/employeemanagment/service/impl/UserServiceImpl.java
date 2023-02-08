@@ -63,50 +63,48 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
-    }
-
-    @Override
-    public String registerUser(User user, RedirectAttributes redirectAttributes) {
+    public String registerUser(User user, RedirectAttributes redirectAttributes, Model model) {
         User userByEmail = userRepository.findUserByEmail(user.getEmail());
         if (userByEmail != null) {
             redirectAttributes.addFlashAttribute("errore", "There is already a email registered with the email provided");
-            return "redirect:register";
+            model.addAttribute("user", null);
+            return "redirect:/register";
         } else if (!user.getPassword().equals(user.getRepeatPassword())) {
             redirectAttributes.addFlashAttribute("errorp", "Password repeat is not same!");
-            return "redirect:register";
+            model.addAttribute("user", null);
+            return "redirect:/register";
         }
         this.save(user);
         redirectAttributes.addFlashAttribute("infos", "Your registration was successfully! Pls check your email.");
-        return "redirect:successful";
+        model.addAttribute("user", null);
+        return "redirect:/successful";
     }
 
     @Override
     public String registerConfirm(String code, RedirectAttributes redirectAttributes) {
         if (Objects.isNull(code)) {
             redirectAttributes.addFlashAttribute("infoe", "Confirmation code is not correct!");
-            return "redirect:error-info";
+            return "redirect:/error-info";
         } else {
             User user = userRepository.findUserByActivationCode(code);
             if (Objects.isNull(user)) {
                 redirectAttributes.addFlashAttribute("infoe", "Confirmation code is not correct!");
-                return "redirect:error-info";
+                return "redirect:/error-info";
             } else {
                 Date expiredDate = user.getExpiredDate();
                 Date currentDate = new Date();
                 if (expiredDate.before(currentDate)) {
                     redirectAttributes.addFlashAttribute("infoex", "Confirmation code is expired!");
                     redirectAttributes.addFlashAttribute("infos", "/resend?id=" + user.getId());
-                    return "redirect:error-info";
+                    return "redirect:/error-info";
                 } else if (Objects.equals(user.getStatus().getStatusId(), UserStatusEnum.CONFIRMED.getStatusId())) {
                     redirectAttributes.addFlashAttribute("infos", "Your account is already confirmed!");
-                    return "redirect:error-info";
+                    return "redirect:/error-info";
                 } else {
                     user.setStatus(userStatusRepository.findUserStatusByStatusId(UserStatusEnum.CONFIRMED.getStatusId()));
                     userRepository.save(user);
                     redirectAttributes.addFlashAttribute("infos", "Your account is successfully confirmed!");
-                    return "redirect:successful";
+                    return "redirect:/successful";
                 }
             }
         }
@@ -128,11 +126,12 @@ public class UserServiceImpl implements UserService {
                 model.addAttribute("user", null);
             } else if (!userByEmail.getStatus().getStatusId().equals(UserStatusEnum.CONFIRMED.getStatusId())) {
                 model.addAttribute("infoex", "Your account is not confirmed!");
+                modelAndView.addObject("infos", "/resend?id=" + userByEmail.getId());
                 modelAndView.setViewName("errorinfopage");
-                model.addAttribute("user", null);
             } else {
                 model.addAttribute("user", userByEmail);
-                modelAndView.setViewName("redirect:/homepage");
+                modelAndView.addObject("user", userByEmail);
+                modelAndView.setViewName("homepage");
             }
         }
         return modelAndView;
@@ -189,14 +188,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model) {
+    public ModelAndView saveNewUserPasswordThatForgotten(Long id, ChangePasswordRequestDto requestDto, Model model) {
         ModelAndView modelAndView = new ModelAndView();
         if (Objects.isNull(requestDto) || !requestDto.getNewPassword().equals(requestDto.getPasswordRepeat())) {
             model.addAttribute("error", "Password is not same");
             modelAndView.setViewName("changepasswordpage");
+            model.addAttribute("id", id);
         } else {
-            User user = userRepository.findById(requestDto.getId()).get();
-            user.setId(requestDto.getId());
+            User user = userRepository.findById(id).get();
+            user.setId(id);
             user.setPassword(passwordEncoder.encode(requestDto.getNewPassword()));
             userRepository.save(user);
             model.addAttribute("infos", "Password successfully changed!");
@@ -208,7 +208,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public ModelAndView resendEmail(Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        this.save(userRepository.findById(id).get());
+        User user = userRepository.findById(id).get();
+        this.save(user);
         modelAndView.addObject("infos", "Activation code was again successfully sent! Please check your email!");
         modelAndView.setViewName("successinfopage");
         return modelAndView;

@@ -26,49 +26,42 @@ public class EmployeeController {
         return employeeService.employeeListPage();
     }
 
-    @GetMapping(value = "/admin/insert")
+    @GetMapping(value = "/insert")
     public String insertPage() {
         return "insertpage";
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/admin/employee-save")
+    @PostMapping(value = "/employee-save")
     public String insertedEmployee(EmployeeRequestDto requestDto) {
         return employeeService.insertedEmployee(requestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/admin/edit-employee-page")
+    @GetMapping(value = "/edit-employee-page")
     public ModelAndView editEmployeeListPage() {
         return employeeService.editEmployeeListPage();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/admin/edit-employee")
+    @GetMapping(value = "/edit-employee")
     public ModelAndView editEmployeePage(@RequestParam(value = "id") Long id) {
         return employeeService.editEmployeePage(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping(value = "/admin/edit-employee-save")
+    @PostMapping(value = "/edit-employee-save")
     public String updatedEmployee(EmployeeRequestDto employeeRequestDto) {
         return employeeService.updatedEmployee(employeeRequestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/admin/delete-employee-page")
+    @GetMapping(value = "/delete-employee-page")
     public ModelAndView deleteEmployeePage() {
         return employeeService.deleteEmployeePage();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(value = "/admin/delete-employee")
+    @GetMapping(value = "/delete-employee")
     public ModelAndView deletedEmployee(@RequestParam(value = "id") Long id) {
         return employeeService.deletedEmployee(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping(value = "/admin/delete-employee-save")
+    @PostMapping(value = "/delete-employee-save")
     public String deletedEmployeeConfirm(@RequestParam(value = "id") Long id) {
         return employeeService.deletedEmployeeConfirm(id);
     }

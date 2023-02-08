@@ -32,24 +32,13 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/register")
-    public String registerUser(User user, RedirectAttributes redirectAttributes) {
-        return userService.registerUser(user, redirectAttributes);
+    public String registerUser(User user, RedirectAttributes redirectAttributes, Model model) {
+        return userService.registerUser(user, redirectAttributes, model);
     }
 
     @GetMapping(value = "/register-confirm")
     public String registerConfirm(@RequestParam(value = "code") String code, RedirectAttributes redirectAttributes) {
         return userService.registerConfirm(code, redirectAttributes);
-    }
-
-    @GetMapping(value = "/error-info")
-    public String errorPage() {
-        return "errorinfopage";
-    }
-
-
-    @GetMapping(value = "/successful")
-    public String successPage() {
-        return "successinfopage";
     }
 
     @GetMapping(value = "/login")
@@ -78,13 +67,24 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/save-new-password")
-    public ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model) {
-        return userService.saveNewUserPasswordThatForgotten(requestDto, model);
+    ModelAndView saveNewUserPasswordThatForgotten(@RequestParam(value = "id")Long id, ChangePasswordRequestDto requestDto, Model model) {
+        return userService.saveNewUserPasswordThatForgotten(id,requestDto, model);
     }
 
     @GetMapping(value = "/resend")
     public ModelAndView resendEmail(@RequestParam(value = "id") Long id) {
         return userService.resendEmail(id);
+    }
+
+    @GetMapping(value = "/error-info")
+    public String errorPage() {
+        return "errorinfopage";
+    }
+
+
+    @GetMapping(value = "/successful")
+    public String successPage() {
+        return "successinfopage";
     }
 
 }

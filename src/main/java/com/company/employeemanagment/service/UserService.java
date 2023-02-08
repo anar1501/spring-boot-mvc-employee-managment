@@ -9,9 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public interface UserService {
     User save(User user);
 
-    User findUserByEmail(String email);
-
-    String registerUser(User user, RedirectAttributes redirectAttributes);
+    String registerUser(User user,RedirectAttributes redirectAttributes, Model model);
 
     String registerConfirm(String code, RedirectAttributes redirectAttributes);
 
@@ -21,7 +19,7 @@ public interface UserService {
 
     ModelAndView validateForgetPasswordActivationCodeAndPrepareNewPassword(String code, Model model);
 
-    ModelAndView saveNewUserPasswordThatForgotten(ChangePasswordRequestDto requestDto, Model model);
+    ModelAndView saveNewUserPasswordThatForgotten(Long id,ChangePasswordRequestDto requestDto, Model model);
 
     ModelAndView resendEmail(Long id);
 }
